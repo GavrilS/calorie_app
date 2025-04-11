@@ -1,6 +1,7 @@
 """
 A helper to calculate calories from lists of user supplied ingredients/meals.
 """
+import math
 from meats import meat_list
 from vegetables import vegetable_list
 
@@ -14,7 +15,7 @@ def calculate_calories(meal):
             print(f"Exception for {item}: {e}")
             errors.append(item)
     
-    return total_calories, errors
+    return math.ceil(total_calories), errors
 
 
 def _calories_per_portion(ingredient, portion_grams, category):
@@ -23,8 +24,9 @@ def _calories_per_portion(ingredient, portion_grams, category):
     else:
         source = vegetable_list
     
-    grams = source.get(ingredient).get('measurement')
-    calories = source.get(ingredient).get('calories')
+    grams = source.get(ingredient, {}).get('measurment', 0)
+    calories = source.get(ingredient, {}).get('calories', 0)
+
     total_calories = calories * (portion_grams / grams)
     return total_calories
 
