@@ -6,7 +6,7 @@ from categories import calorie_calculator
 bp = Blueprint('calculator', __name__, '/')
 
 
-@bp.route('/', methods=['GET', 'POST'])
+@bp.route('/calculate', methods=['GET', 'POST'])
 def calculate():
     total_calories = 0
     if request.method == 'POST':
