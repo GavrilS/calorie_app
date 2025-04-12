@@ -23,4 +23,4 @@ def calculate():
         
         total_calories = calorie_calculator(meal)
     
-    return render_template('calculator', total_calories)
+    return render_template('calculator', meal_calories=total_calories)
