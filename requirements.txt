@@ -1,1 +1,2 @@
 Flask
+elastic-apm[flask]
