@@ -10,8 +10,8 @@ bp = Blueprint('calculator', __name__, '/')
 def calculate():
     total_calories = 0
     if request.method == 'POST':
-        ingredient_list = request.form.get('ingredients', [])
-        portions = request.form.get('portions', [])
+        ingredient_list = request.form.get('ingredients', '').replace(', ', ',').split(',')
+        portions = request.form.get('portions', '').replace(', ', ',').split(',')
         meal = {}
         try:
             for i in range(len(ingredient_list)):
@@ -23,4 +23,4 @@ def calculate():
         
         total_calories = calorie_calculator(meal)
     
-    return render_template('calculator', meal_calories=total_calories)
+    return render_template('calculator.html', meal_calories=total_calories)

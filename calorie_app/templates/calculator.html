@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post">
+        <label for="ingredients">Ingredients</label>
+        <input name="ingredients" id="ingredients">
+        <label for="portions">Portions per ingredient</label>
+        <input name="portions" id="portions">
+        <input type="submit" value="Calculate calories">
+    </form>
+{% endblock %}
