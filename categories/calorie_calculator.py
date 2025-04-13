@@ -10,7 +10,7 @@ def calculate_calories(meal):
     errors = []
     for item, value in meal.items():
         try:
-            total_calories += _calories_per_portion(item, value.get('grams'), value.get('category'))
+            total_calories += _calories_per_portion(item, int(value.get('grams')))
         except Exception as e:
             print(f"Exception for {item}: {e}")
             errors.append(item)
@@ -18,8 +18,8 @@ def calculate_calories(meal):
     return math.ceil(total_calories), errors
 
 
-def _calories_per_portion(ingredient, portion_grams, category):
-    if 'meat' in category:
+def _calories_per_portion(ingredient, portion_grams):
+    if ingredient in meat_list:
         source = meat_list
     else:
         source = vegetable_list
