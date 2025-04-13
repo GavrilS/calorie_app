@@ -1,7 +1,7 @@
 from flask import (
     Blueprint, request, render_template, flash
 )
-from categories import calorie_calculator
+from categories.calorie_calculator import calculate_calories
 
 bp = Blueprint('calculator', __name__, '/')
 
@@ -15,12 +15,12 @@ def calculate():
         meal = {}
         try:
             for i in range(len(ingredient_list)):
-                meal[ingredient_list.get(i)] = {
-                    "grams": portions.get(i)
+                meal[ingredient_list[i]] = {
+                    "grams": portions[i]
                 }
         except Exception as e:
             flash(f"Error: {e}")
         
-        total_calories = calorie_calculator(meal)
+        total_calories = calculate_calories(meal)
     
     return render_template('calculator.html', meal_calories=total_calories)
